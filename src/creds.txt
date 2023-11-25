@@ -1,0 +1,7 @@
+role: user
+login: john_doe
+password: userpass123
+
+role: admin
+login: admin_user
+password: adminpass456
