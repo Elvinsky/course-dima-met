@@ -9,7 +9,7 @@ add_executable(course_dima_met_1
         src/MedicalInfoSystem.h
         src/models/User.cpp
         src/models/User.h
+        src/MedicalInfoManipulator/MedicalInfoManipulator.cpp
+        src/MedicalInfoManipulator/MedicalInfoManipulator.h
         src/credsReader/creds_store.cpp
-        src/credsReader/creds_store.h
-        src/MedicalInfoManipulator/MedicakInfoManipulator.cpp
-        src/MedicalInfoManipulator/MedicakInfoManipulator.h)
+        src/credsReader/creds_store.h)
