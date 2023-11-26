@@ -3,15 +3,17 @@
 //
 
 #include "AbstractUser.h"
+#include "../credsReader/CredsReader.h"
 
-bool AbstractUser::authoriseUser(const std::string &login, const std::string &password) {
-    // todo: mock
-    this->is_authorised = (login == "admin" && password == "password");
-    return this->is_authorised;
+
+std::string AbstractUser::authoriseUser(const std::string &login, const std::string &password) {
+    CredentialsParser parser("../creds.txt");
+    this->role = parser.GetRole(login,password);
+    return this->role;
 }
 
-bool AbstractUser::isAuthorised() const {
-    return is_authorised;
+std::string AbstractUser::getRole() const {
+    return role;
 }
 
 

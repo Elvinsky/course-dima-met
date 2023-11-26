@@ -1,9 +1,9 @@
 #include <iostream>
-#include "src/Controller.h"
 #include "src/credsReader/CredsReader.h"
+#include "src/models/AbstractUser.h"
 
 int main() {
-    CredentialsParser parser("../creds.txt");
-    std::cout << parser.ToString();
+    AbstractUser user;
+    std::cout << user.authoriseUser("john_doe","userpass123");
     return 0;
 }

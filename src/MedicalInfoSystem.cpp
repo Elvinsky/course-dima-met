@@ -10,15 +10,13 @@
 void MedicalInfoSystem::displayMainMenu() {
     std::cout << "Main menu:" << std::endl;
     std::string selected_option = this->getUserInput();
-    switch (selected_option) {
-        case "1":
-    }
+
 
 }
 
 void MedicalInfoSystem::run() {
     this->displayAuthMenu();
-    if (this->user.isAuthorised()) {
+    if (this->user.getRole() == "admin" || this->user.getRole() == "user") {
         this->displayMainMenu();
     }
 }
@@ -29,8 +27,8 @@ void MedicalInfoSystem::displayAuthMenu() {
     std::string login = this->getUserInput();
     std::cout << "Enter password:" << std::endl;
     std::string password = this->getUserInput();
-    bool result = this->user.authoriseUser(login, password);
-    if (!result) {
+    std::string result = this->user.authoriseUser(login, password);
+    if (result.empty()) {
         std::cout << "Wrong credentials, try again!" << std::endl;
         this->displayAuthMenu();
     } else {

@@ -48,3 +48,12 @@ std::string CredentialsParser::ToString() const {
 
     return oss.str();
 }
+
+std::string CredentialsParser::GetRole(const std::string& login, const std::string& password) const {
+    for (const auto& entry : credentials) {
+        if (entry.first == login && entry.second.first == password) {
+            return entry.second.second;
+        }
+    }
+    return "";
+}

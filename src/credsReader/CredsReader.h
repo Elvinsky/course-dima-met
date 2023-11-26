@@ -12,6 +12,7 @@ public:
     CredentialsParser(const std::string& filename);
     void ParseFile(const std::string& filename);
     std::string ToString() const;
+    std::string GetRole(const std::string& login, const std::string& password) const;
 };
 
 #endif // CREDS_READER_H

@@ -11,15 +11,11 @@
 class AbstractUser {
 public:
     AbstractUser() = default;
-
-    bool authoriseUser(const std::string &login, const std::string &password);
-
-    bool isAuthorised() const;
-
+    std::string authoriseUser(const std::string &login, const std::string &password);
+    std::string getRole() const;
 
 private:
-    bool is_authorised = false;
-
+    std::string role;
 };
 
 
