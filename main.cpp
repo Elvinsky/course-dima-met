@@ -3,11 +3,7 @@
 #include "src/credsReader/CredsReader.h"
 
 int main() {
-    CredentialReader reader;
-    std::vector<std::string> credentials = reader.readCredentials("creds.txt");
-
-    // Displaying the result
-    for (const auto& credential : credentials) {
-        std::cout << credential << std::endl;
-    }
+    CredentialsParser parser("../creds.txt");
+    std::cout << parser.ToString();
+    return 0;
 }

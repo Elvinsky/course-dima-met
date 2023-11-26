@@ -1,7 +1,7 @@
 role: user
-login: john_doe
 password: userpass123
+login: john_doe
 
 role: admin
-login: admin_user
 password: adminpass456
+login: admin_user

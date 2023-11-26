@@ -1,16 +1,17 @@
-// credential_reader.h
-
-#ifndef CREDENTIAL_READER_H
-#define CREDENTIAL_READER_H
+#ifndef CREDS_READER_H
+#define CREDS_READER_H
 
 #include <iostream>
 #include <fstream>
-#include <vector>
 #include <sstream>
+#include <unordered_map>
 
-class CredentialReader {
+class CredentialsParser {
 public:
-    std::vector<std::string> readCredentials(const std::string& filePath);
+    std::unordered_map<std::string, std::pair<std::string, std::string>> credentials;
+    CredentialsParser(const std::string& filename);
+    void ParseFile(const std::string& filename);
+    std::string ToString() const;
 };
 
-#endif // CREDENTIAL_READER_H
+#endif // CREDS_READER_H

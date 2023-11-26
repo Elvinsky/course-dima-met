@@ -1,25 +1,50 @@
-// credential_reader.cpp
-
 #include "CredsReader.h"
 
-std::vector<std::string> CredentialReader::readCredentials(const std::string& filePath) {
-    std::ifstream file(filePath);
-    std::vector<std::string> credentials;
+CredentialsParser::CredentialsParser(const std::string& filename) {
+    ParseFile(filename);
+}
 
-    if (file.is_open()) {
-        std::string line;
-        while (std::getline(file, line)) {
-            std::istringstream iss(line);
-            std::string key, value;
-            iss >> key >> value;
-            if (key == "role:" || key == "login:" || key == "password:") {
-                credentials.push_back(value);
-            }
-        }
-        file.close();
-    } else {
-        std::cerr << "Unable to open file: " << filePath << std::endl;
+void CredentialsParser::ParseFile(const std::string& filename) {
+    std::ifstream file(filename);
+    if (!file.is_open()) {
+        std::cerr << "Error: Could not open file - " << filename << std::endl;
+        return;
     }
 
-    return credentials;
+    std::string line;
+    std::string role, login, password;
+
+    while (std::getline(file, line)) {
+        std::istringstream iss(line);
+        std::string key, value;
+
+        while (iss >> key) {
+            if (key == "role:") {
+                getline(iss >> std::ws, role);
+            } else if (key == "login:") {
+                getline(iss >> std::ws, login);
+            } else if (key == "password:") {
+                getline(iss >> std::ws, password);
+            }
+        }
+
+        if (!login.empty()) {
+            credentials[login] = std::make_pair(password, role);
+            login.clear();
+        }
+    }
+
+    file.close();
+}
+
+std::string CredentialsParser::ToString() const {
+    std::ostringstream oss;
+
+    for (const auto& entry : credentials) {
+        oss << "Login: " << entry.first << "\n";
+        oss << "Password: " << entry.second.first << "\n";
+        oss << "Role: " << entry.second.second << "\n\n";
+    }
+
+    return oss.str();
 }
