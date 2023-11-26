@@ -3,5 +3,5 @@ password: userpass123
 login: john_doe
 
 role: admin
-password: adminpass456
-login: admin_user
+password: password
+login: admin
