@@ -1,9 +1,8 @@
 #include <iostream>
-#include "src/credsReader/CredsReader.h"
-#include "src/models/AbstractUser.h"
+#include "src/MedicalInfoSystem.h"
 
 int main() {
-    AbstractUser user;
-    std::cout << user.authoriseUser("john_doe","userpass123");
+    MedicalInfoSystem system = MedicalInfoSystem();
+    system.run();
     return 0;
 }

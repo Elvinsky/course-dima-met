@@ -29,8 +29,17 @@ void MedicalInfoSystem::displayAuthMenu() {
     std::string password = this->getUserInput();
     std::string result = this->user.authoriseUser(login, password);
     if (result.empty()) {
-        std::cout << "Wrong credentials, try again!" << std::endl;
-        this->displayAuthMenu();
+        std::cout << "Wrong credentials, try again?" << std::endl;
+        std::cout << "1. Try again" << std::endl;
+        std::cout << "2. Exit" << std::endl;
+        std::string user_choice = this->getUserInput();
+        if (user_choice == "1") {
+            this->displayAuthMenu();
+        }
+        else {
+            std::cout << "Okay, bye!" << std::endl;
+            return;
+        }
     } else {
         std::cout << "OK!" << std::endl;
     }

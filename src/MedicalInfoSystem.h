@@ -1,7 +1,7 @@
 #ifndef COURSE_DIMA_MET_1_MEDICALINFOSYSTEM_H
 #define COURSE_DIMA_MET_1_MEDICALINFOSYSTEM_H
 
-#include "models/AbstractUser.h"
+#include "models/User.h"
 
 class MedicalInfoSystem {
 public:
@@ -11,7 +11,7 @@ private:
     void displayAuthMenu();
     std::string getUserInput();
 
-    AbstractUser user = AbstractUser();
+    User user = User();
 
 };
 
