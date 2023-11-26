@@ -5,11 +5,11 @@ set(CMAKE_CXX_STANDARD 14)
 
 add_executable(course_dima_met_1
         main.cpp
-        src/MedicalInfoSystem.cpp
-        src/MedicalInfoSystem.h
-        src/models/User.cpp
-        src/models/User.h
-        src/MedicalInfoManipulator/MedicalInfoManipulator.cpp
-        src/MedicalInfoManipulator/MedicalInfoManipulator.h
-        src/credsReader/creds_store.cpp
-        src/credsReader/creds_store.h)
+        src/medical_info_system/medical_info_system.cpp
+        src/medical_info_system/medical_info_system.h
+        src/user/user.cpp
+        src/user/user.h
+        src/medical_info_manipulator/medical_info_manipulator.cpp
+        src/medical_info_manipulator/medical_info_manipulator.h
+        src/creds_store/creds_store.cpp
+        src/creds_store/creds_store.h)

@@ -1,4 +1,4 @@
-#include "MedicalInfoManipulator.h"
+#include "medical_info_manipulator.h"
 #include <algorithm>
 #include <iomanip>
 #include <stdexcept>

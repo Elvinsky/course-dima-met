@@ -2,8 +2,8 @@
 // Created by mikhn on 25/11/2023.
 //
 
-#include "User.h"
-#include "../credsReader/creds_store.h"
+#include "user.h"
+#include "../creds_store/creds_store.h"
 
 
 std::string User::authoriseUser(const std::string &login, const std::string &password) {
