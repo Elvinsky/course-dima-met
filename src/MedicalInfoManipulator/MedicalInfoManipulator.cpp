@@ -15,13 +15,13 @@ void MedicalInfoManipulator::parseFile(const std::string &filename) {
         return;
     }
 
-    clients.clear();
+    this->clients.clear();
 
     while (!file.eof()) {
         ClientInfo client;
         file >> client.fullName >> client.gender >> client.birthDate
              >> client.city >> client.phoneNumber >> client.diagnosis;
-        clients.push_back(client);
+        this->clients.push_back(client);
     }
 
     file.close();
@@ -42,7 +42,7 @@ void MedicalInfoManipulator::displayTable() const {
     std::cout
             << "---------------------------------------------------------------------------------------------------\n";
 
-    for (const auto &client: clients) {
+    for (const auto &client: this->clients) {
         std::cout << "| " << client.fullName << "\t|"
                   << client.gender << "\t|"
                   << client.birthDate << "\t|"
@@ -56,13 +56,13 @@ void MedicalInfoManipulator::displayTable() const {
 }
 
 void MedicalInfoManipulator::sortByName() {
-    std::sort(clients.begin(), clients.end(), [](const ClientInfo &a, const ClientInfo &b) {
+    std::sort(this->clients.begin(), this->clients.end(), [](const ClientInfo &a, const ClientInfo &b) {
         return a.fullName < b.fullName;
     });
 }
 
 void MedicalInfoManipulator::sortByAge() {
-    std::sort(clients.begin(), clients.end(), [](const ClientInfo &a, const ClientInfo &b) {
+    std::sort(this->clients.begin(), this->clients.end(), [](const ClientInfo &a, const ClientInfo &b) {
         try {
             tm tmA = {};
             tmA.tm_mday = std::stoi(a.birthDate.substr(0, 2));

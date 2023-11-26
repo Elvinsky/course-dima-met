@@ -14,9 +14,9 @@ public:
     ~CredentialsStore() = default;
 
     explicit CredentialsStore(const std::string& filename);
-    void ParseFile(const std::string& filename);
+    void parseFile();
     std::string getAllCreds() const;
-    std::string GetRole(const std::string& login, const std::string& password) const;
+    std::string getRole(const std::string& login, const std::string& password) const;
     void addNewUser(const std::string& login, const std::string& password, const std::string& role);
     void editUser(const std::string& login, const std::string& password, const std::string& role);
     void deleteUser(const std::string& login);

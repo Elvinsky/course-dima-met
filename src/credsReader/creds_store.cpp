@@ -2,13 +2,13 @@
 
 CredentialsStore::CredentialsStore(const std::string &filename) {
     this->filename = filename;
-    ParseFile(filename);
+    parseFile();
 }
 
-void CredentialsStore::ParseFile(const std::string &filename) {
-    std::ifstream file(filename);
+void CredentialsStore::parseFile() {
+    std::ifstream file(this->filename);
     if (!file.is_open()) {
-        std::cerr << "Error: Could not open file - " << filename << std::endl;
+        std::cerr << "Ошибка! Невозможно открыть файл - " << filename << std::endl;
         return;
     }
 
@@ -30,7 +30,7 @@ void CredentialsStore::ParseFile(const std::string &filename) {
         }
 
         if (!login.empty()) {
-            credentials[login] = std::make_pair(password, role);
+            this->credentials[login] = std::make_pair(password, role);
             login.clear();
         }
     }
@@ -41,15 +41,15 @@ void CredentialsStore::ParseFile(const std::string &filename) {
 std::string CredentialsStore::getAllCreds() const {
     std::ostringstream oss;
 
-    for (const auto &entry: credentials) {
+    for (const auto &entry: this->credentials) {
         oss << "Логин: " << entry.first << "\t\t" << "Роль: " << entry.second.second << "\n";
     }
 
     return oss.str();
 }
 
-std::string CredentialsStore::GetRole(const std::string &login, const std::string &password) const {
-    for (const auto &entry: credentials) {
+std::string CredentialsStore::getRole(const std::string &login, const std::string &password) const {
+    for (const auto &entry: this->credentials) {
         if (entry.first == login && entry.second.first == password) {
             return entry.second.second;
         }
@@ -62,10 +62,10 @@ void CredentialsStore::addNewUser(const std::string &login, const std::string &p
 }
 
 void CredentialsStore::closeStore() {
-    std::ofstream outputFile(filename);
+    std::ofstream outputFile(this->filename);
 
     if (!outputFile.is_open()) {
-        std::cerr << "Error opening the file." << std::endl;
+        std::cerr << "Ошибка! Невозможно открыть файл - " << this->filename << std::endl;
         exit(1);
     }
     for (const auto &cred_line: this->credentials) {

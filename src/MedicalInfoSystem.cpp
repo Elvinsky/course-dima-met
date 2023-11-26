@@ -19,7 +19,6 @@ void MedicalInfoSystem::displayAdminMainMenu() {
     std::cout << "5. Выход" << std::endl;
 
     int user_input = std::stoi(this->getUserInput());
-    // todo: chose smth
     switch (user_input) {
         case 1: {
             std::cout << this->creds_store.getAllCreds();
@@ -111,16 +110,16 @@ void MedicalInfoSystem::run() {
 }
 
 void MedicalInfoSystem::displayAuthMenu() {
-    std::cout << "Auth menu: " << std::endl;
-    std::cout << "Enter login: " << std::endl;
+    std::cout << "Меню авторизации: " << std::endl;
+    std::cout << "Введите логин: " << std::endl;
     std::string login = this->getUserInput();
-    std::cout << "Enter password:" << std::endl;
+    std::cout << "Введите пароль:" << std::endl;
     std::string password = this->getUserInput();
     std::string result = this->user.authoriseUser(login, password);
     if (result.empty()) {
-        std::cout << "Wrong credentials, try again?" << std::endl;
-        std::cout << "1. Try again" << std::endl;
-        std::cout << "2. Exit" << std::endl;
+        std::cout << "Неправильные данные! Попробовать ещё раз?" << std::endl;
+        std::cout << "1. Авторизация" << std::endl;
+        std::cout << "2. Выход" << std::endl;
         std::string user_choice = getUserInput();
         if (user_choice == "1") {
             this->displayAuthMenu();
@@ -128,7 +127,7 @@ void MedicalInfoSystem::displayAuthMenu() {
             this->displayByeMessage();
         }
     } else {
-        std::cout << "OK!" << std::endl;
+        std::cout << "Авторизация успешно!" << std::endl;
     }
 }
 
