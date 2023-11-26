@@ -12,7 +12,7 @@ private:
     void displayAdminMainMenu();
     void displayUserMainMenu();
     void displayAuthMenu();
-    std::string getUserInput();
+    static std::string getUserInput();
     void displayByeMessage();
 
     User user;

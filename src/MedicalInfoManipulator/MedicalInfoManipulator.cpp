@@ -83,4 +83,15 @@ void MedicalInfoManipulator::sortByAge() {
     });
 }
 
+void MedicalInfoManipulator::filterBySubstring(const std::string &substring) {
+    std::vector<ClientInfo> filteredClients;
 
+    for (const auto &client : clients) {
+        if (client.fullName.find(substring) != std::string::npos) {
+            filteredClients.push_back(client);
+        }
+    }
+
+    this->clients = filteredClients;
+    this->displayTable();
+}

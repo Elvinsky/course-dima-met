@@ -5,10 +5,98 @@
 #include <iostream>
 #include <vector>
 #include "MedicalInfoSystem.h"
+#include "MedicalInfoManipulator/MedicalInfoManipulator.h"
 
 
 void MedicalInfoSystem::displayUserMainMenu() {
+    MedicalInfoManipulator manip;
+    manip.parseFile("../medinfo.txt");
+    std::cout << "1. Просмотреть все данные" << std::endl;
+    std::cout << "2. Поиск и фильтрация" << std::endl;
+    std::cout << "3. Сортировка" << std::endl;
+    std::cout << "4. Выход" << std::endl;
 
+    int user_input = std::stoi(this->getUserInput());
+
+    switch (user_input) {
+        case 1: {
+            std::cout << "1. Вернуться в главное меню" << std::endl;
+            std::cout << "2. Выйти" << std::endl;
+            int choice = std::stoi(this->getUserInput());
+            if (choice == 1) {
+                this->displayUserMainMenu();
+            } else {
+                std::cout << "До свидания!";
+                exit(0);
+            }
+        }
+        case 2: {
+            std::cout << "Введите подстроку для поиска" << std::endl;
+            std::string substr;
+            std::cin >> substr;
+
+            manip.filterBySubstring(substr);
+
+            std::cout << "1. Вернуться в главное меню" << std::endl;
+            std::cout << "2. Выйти" << std::endl;
+            int choice2 = std::stoi(this->getUserInput());
+            if (choice2 == 1) {
+                this->displayUserMainMenu();
+            } else {
+                std::cout << "До свидания!";
+                exit(0);
+            }
+        }
+        case 3: {
+            std::cout << "1. Сортировка по фамилии" << std::endl;
+            std::cout << "2. Соритровка по возрасту" << std::endl;
+            std::cout << "3. Выход" << std::endl;
+
+            int choice = std::stoi(this->getUserInput());
+
+            switch (choice) {
+                case 1: {
+                    manip.sortByName();
+                    manip.displayTable();
+                    std::cout << "1. Вернуться в главное меню" << std::endl;
+                    std::cout << "2. Выйти" << std::endl;
+                    int choice2 = std::stoi(this->getUserInput());
+                    if (choice2 == 1) {
+                        this->displayUserMainMenu();
+                    } else {
+                        std::cout << "До свидания!";
+                        exit(0);
+                    }
+                }
+                case 2: {
+                    manip.sortByAge();
+                    manip.displayTable();
+                    std::cout << "1. Вернуться в главное меню" << std::endl;
+                    std::cout << "2. Выйти" << std::endl;
+                    int choice2 = std::stoi(this->getUserInput());
+                    if (choice2 == 1) {
+                        this->displayUserMainMenu();
+                    } else {
+                        std::cout << "До свидания!";
+                        exit(0);
+                    }
+                }
+                case 3: {
+                    std::cout << "До свидания!";
+                    exit(0);
+                }
+                default: {
+                    std::cout << "Under development";
+                }
+            }
+        }
+        case 4: {
+            std::cout << "До свидания!";
+            exit(0);
+        }
+        default:
+            std::cout << "Under development";
+    }
 }
 
 void MedicalInfoSystem::displayAdminMainMenu() {

@@ -19,6 +19,7 @@ public:
     void displayTable() const;
     void sortByName();
     void sortByAge();
+    void filterBySubstring(const std::string &substring);
 private:
     struct ClientInfo {
         std::string fullName;
