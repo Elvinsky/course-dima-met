@@ -2,12 +2,13 @@
 // Created by mikhn on 26/11/2023.
 //
 
-#ifndef COURSE_DIMA_MET_1_MEDICAKINFOMANIPULATOR_H
-#define COURSE_DIMA_MET_1_MEDICAKINFOMANIPULATOR_H
+#ifndef COURSE_DIMA_MET_1_MEDICALINFOMANIPULATOR_H
+#define COURSE_DIMA_MET_1_MEDICALINFOMANIPULATOR_H
 
 
 #include <iostream>
 #include <fstream>
+#include <ctime>
 #include <vector>
 
 class MedicalInfoManipulator {
@@ -30,4 +31,4 @@ private:
     std::vector<ClientInfo> clients;
 };
 
-#endif //COURSE_DIMA_MET_1_MEDICAKINFOMANIPULATOR_H
+#endif //COURSE_DIMA_MET_1_MEDICALINFOMANIPULATOR_H

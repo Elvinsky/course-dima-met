@@ -1,12 +1,9 @@
-#include <iostream>
-#include "src/credsReader/CredsReader.h"
-#include "src/models/AbstractUser.h"
-#include "src/MedicalInfoManipulator/MedicakInfoManipulator.h"
+#include "src/MedicalInfoManipulator/MedicalInfoManipulator.h"
 
 int main() {
     MedicalInfoManipulator manip;
     manip.parseFile("../medinfo.txt");
-    manip.sortByName();
+    manip.sortByAge();
     manip.displayTable();
-     return 0;
+    return 0;
 }

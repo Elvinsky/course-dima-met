@@ -35,8 +35,7 @@ void MedicalInfoSystem::displayAuthMenu() {
         std::string user_choice = this->getUserInput();
         if (user_choice == "1") {
             this->displayAuthMenu();
-        }
-        else {
+        } else {
             std::cout << "Okay, bye!" << std::endl;
             return;
         }

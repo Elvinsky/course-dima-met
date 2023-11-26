@@ -8,7 +8,7 @@
 
 std::string User::authoriseUser(const std::string &login, const std::string &password) {
     CredentialsParser parser("../creds.txt");
-    this->role = parser.GetRole(login,password);
+    this->role = parser.GetRole(login, password);
     return this->role;
 }
 

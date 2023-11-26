@@ -11,7 +11,9 @@
 class User {
 public:
     User() = default;
+
     std::string authoriseUser(const std::string &login, const std::string &password);
+
     std::string getRole() const;
 
 private:

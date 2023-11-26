@@ -6,9 +6,12 @@
 class MedicalInfoSystem {
 public:
     void run();
+
 private:
     void displayMainMenu();
+
     void displayAuthMenu();
+
     std::string getUserInput();
 
     User user = User();
