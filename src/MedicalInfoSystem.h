@@ -13,6 +13,7 @@ private:
     void displayUserMainMenu();
     void displayAuthMenu();
     std::string getUserInput();
+    void displayByeMessage();
 
     User user;
     CredentialsStore creds_store;

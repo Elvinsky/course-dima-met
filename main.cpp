@@ -1,9 +1,7 @@
-#include "src/MedicalInfoManipulator/MedicalInfoManipulator.h"
+#include "src/MedicalInfoSystem.h"
 
 int main() {
-    MedicalInfoManipulator manip;
-    manip.parseFile("../medinfo.txt");
-    manip.sortByAge();
-    manip.displayTable();
+    MedicalInfoSystem system = MedicalInfoSystem();
+    system.run();
     return 0;
 }
