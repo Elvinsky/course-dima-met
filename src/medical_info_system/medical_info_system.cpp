@@ -4,6 +4,8 @@
 
 #include <iostream>
 #include <vector>
+#include <locale>
+#include <codecvt>
 #include "medical_info_system.h"
 #include "../medical_info_manipulator/medical_info_manipulator.h"
 
@@ -20,6 +22,7 @@ void MedicalInfoSystem::displayUserMainMenu() {
 
     switch (user_input) {
         case 1: {
+            manip.displayTable();
             std::cout << "1. Вернуться в главное меню" << std::endl;
             std::cout << "2. Выйти" << std::endl;
             int choice = std::stoi(this->getUserInput());
@@ -32,11 +35,8 @@ void MedicalInfoSystem::displayUserMainMenu() {
         }
         case 2: {
             std::cout << "Введите подстроку для поиска" << std::endl;
-            std::string substr;
-            std::cin >> substr;
-
+            std::string substr = this->getUserInput();
             manip.filterBySubstring(substr);
-
             std::cout << "1. Вернуться в главное меню" << std::endl;
             std::cout << "2. Выйти" << std::endl;
             int choice2 = std::stoi(this->getUserInput());

@@ -86,12 +86,13 @@ void MedicalInfoManipulator::sortByAge() {
 void MedicalInfoManipulator::filterBySubstring(const std::string &substring) {
     std::vector<ClientInfo> filteredClients;
 
-    for (const auto &client : clients) {
-        if (client.fullName.find(substring) != std::string::npos) {
-            filteredClients.push_back(client);
-        }
-    }
+    std::copy_if(clients.begin(), clients.end(), std::back_inserter(filteredClients),
+                 [substring](const ClientInfo &client) {
+                     return client.fullName.find(substring) != std::string::npos;
+                 });
 
+    // Display the filtered results
+    std::cout << "Filtered results for names containing '" << substring << "':\n";
     this->clients = filteredClients;
-    this->displayTable();
+    displayTable();
 }
