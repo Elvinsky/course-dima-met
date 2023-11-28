@@ -1,7 +1,3 @@
-role: admin
-password: nik
-login: nik
-
 role: user
 password: userpass123
 login: john_doe
@@ -9,4 +5,8 @@ login: john_doe
 role: admin
 password: password
 login: admin
+
+role: user
+password: _0909_
+login: Piska
 
