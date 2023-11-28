@@ -14,7 +14,8 @@ void MedicalInfoSystem::displayUserMainMenu() {
     std::cout << "1. Просмотреть все данные" << std::endl;
     std::cout << "2. Поиск и фильтрация" << std::endl;
     std::cout << "3. Сортировка" << std::endl;
-    std::cout << "4. Выход" << std::endl;
+    std::cout << "4. Вывести всех иногородних пациентов" << std::endl;
+    std::cout << "5. Выход" << std::endl;
 
     int user_input = std::stoi(this->getUserInput());
 
@@ -91,11 +92,24 @@ void MedicalInfoSystem::displayUserMainMenu() {
             }
         }
         case 4: {
+            manip.getNonResidents();
+            std::cout << "1. Вернуться в главное меню" << std::endl;
+            std::cout << "2. Выйти" << std::endl;
+            int choice2 = std::stoi(this->getUserInput());
+            if (choice2 == 1) {
+                this->displayUserMainMenu();
+            } else {
+                std::cout << "До свидания!";
+                exit(0);
+            }
+        }
+        case 5: {
             std::cout << "До свидания!";
             exit(0);
         }
         default:
-            std::cout << "Under development";
+            std::cout << "Неправильная опция. Возвращаемся в главное меню.";
+            this->displayUserMainMenu();
     }
 }
 

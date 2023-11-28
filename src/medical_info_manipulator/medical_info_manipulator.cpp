@@ -86,12 +86,30 @@ void MedicalInfoManipulator::sortByAge() {
 void MedicalInfoManipulator::filterBySubstring(const std::string &substring) {
     std::vector<ClientInfo> filteredClients;
 
-    for (const auto &client : clients) {
+    for (const auto &client: clients) {
         if (client.fullName.find(substring) != std::string::npos) {
             filteredClients.push_back(client);
         }
     }
-
+    std::vector <ClientInfo> old_clients = this->clients;
     this->clients = filteredClients;
     this->displayTable();
+    this->clients = old_clients;
 }
+
+
+void MedicalInfoManipulator::getNonResidents() {
+    std::vector<ClientInfo> non_resident_clients;
+
+    for (const auto &client: clients) {
+        if (client.city != "Минск") {
+            non_resident_clients.push_back(client);
+        }
+    }
+    std::vector <ClientInfo> old_clients = this->clients;
+    this->clients = non_resident_clients;
+    this->displayTable();
+    this->clients = old_clients;
+}
+
+
