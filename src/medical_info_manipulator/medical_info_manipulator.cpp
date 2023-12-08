@@ -3,11 +3,18 @@
 #include <iomanip>
 #include <stdexcept>
 
-MedicalInfoManipulator::MedicalInfoManipulator() {}
+void MedicalInfoManipulator::closeStore() {
+    std::ofstream file(this->filename);
 
-MedicalInfoManipulator::~MedicalInfoManipulator() {}
+    for (const auto& client: clients){
+        file << client.fullName << " " << client.gender << " " << client.birthDate
+             << " " << client.city << " " << client.phoneNumber << " " << client.diagnosis << std::endl;
+    }
+    file.close();
+}
 
 void MedicalInfoManipulator::parseFile(const std::string &filename) {
+    this->filename = filename;
     std::ifstream file(filename);
 
     if (!file.is_open()) {
@@ -131,5 +138,58 @@ void MedicalInfoManipulator::filterByAgeAndDiagnose(int age, const std::string &
     this->displayTable();
     this->clients = old_clients;
 }
+
+void
+MedicalInfoManipulator::addRow(const std::string &fullName, const std::string &gender, const std::string &birthDate,
+                               const std::string &city, const std::string &phoneNumber, const std::string &diagnosis) {
+    ClientInfo new_client = ClientInfo();
+    new_client.fullName = fullName;
+    new_client.gender = gender;
+    new_client.birthDate = birthDate;
+    new_client.city = city;
+    new_client.phoneNumber = phoneNumber;
+    new_client.diagnosis = diagnosis;
+
+    this->clients.push_back(new_client);
+
+}
+
+void MedicalInfoManipulator::deleteRow(const std::string& fullname) {
+    auto condition = [fullname](const ClientInfo &client) {
+        return client.fullName.find(fullname) != std::string::npos;
+    };
+
+    auto it = std::find_if(clients.begin(), clients.end(), condition);
+
+    if (it == clients.end()) {
+        throw std::out_of_range("Substring not found in clients");
+    }
+
+    clients.erase(it);
+}
+
+void
+MedicalInfoManipulator::editRow(const std::string &fullName, const std::string &gender,
+                                const std::string &birthDate, const std::string &city, const std::string &phoneNumber,
+                                const std::string &diagnosis) {
+    auto condition = [fullName](const ClientInfo &client) {
+        return client.fullName.find(fullName) != std::string::npos;
+    };
+
+    auto it = std::find_if(clients.begin(), clients.end(), condition);
+    if (it == clients.end()) {
+        throw std::out_of_range("Substring not found in clients");
+    }
+    it->gender = gender;
+    it->birthDate = birthDate;
+    it->city = city;
+    it->phoneNumber = phoneNumber;
+    it->diagnosis = diagnosis;
+}
+
+
+
+
+
 
 

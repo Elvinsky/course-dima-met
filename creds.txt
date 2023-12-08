@@ -1,12 +1,12 @@
 role: user
-password: pass
-login: user
+password: _0909_
+login: Piska
 
 role: admin
 password: password
 login: admin
 
 role: user
-password: _0909_
-login: Piska
+password: pass
+login: user
 

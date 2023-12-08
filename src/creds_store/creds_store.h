@@ -20,6 +20,8 @@ public:
     void addNewUser(const std::string& login, const std::string& password, const std::string& role);
     void editUser(const std::string& login, const std::string& password, const std::string& role);
     void deleteUser(const std::string& login);
+    void createCredStoreFile(const std::string &filename);
+    void deleteCredStoreFile();
 
     void closeStore();
 

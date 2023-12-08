@@ -1,7 +1,10 @@
 #include "creds_store.h"
+#include <cstdio>
+#include <cstdlib>
 
 CredentialsStore::CredentialsStore(const std::string &filename) {
     this->filename = filename;
+    this->createCredStoreFile(filename);
     parseFile();
 }
 
@@ -85,5 +88,35 @@ void CredentialsStore::deleteUser(const std::string &login) {
     auto it = this->credentials.find(login);
     if (it != this->credentials.end()) {
         this->credentials.erase(it);
+    } else {
+        throw std::out_of_range("No user with this login!");
     }
 }
+
+void CredentialsStore::deleteCredStoreFile() {
+    std::remove(this->filename.c_str());
+}
+
+bool fileExists(const std::string& filename) {
+    std::ifstream file(filename.c_str());
+    return file.good();
+}
+
+void CredentialsStore::createCredStoreFile(const std::string &filename) {
+    if (!fileExists(filename)) {
+        std::ofstream outputFile(filename);
+
+        if (outputFile.is_open()) {
+            outputFile << "role: admin\n"
+                          "password: password\n"
+                          "login: admin\n";
+            outputFile.close();
+
+            std::cout << "Файл создан." << std::endl;
+        } else {
+            std::cerr << "Ошибка создания файла" << std::endl;
+        }
+    }
+}
+
+

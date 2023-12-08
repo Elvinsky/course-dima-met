@@ -3,6 +3,7 @@
 
 #include "../user/user.h"
 #include "../creds_store/creds_store.h"
+#include "../medical_info_manipulator/medical_info_manipulator.h"
 
 class MedicalInfoSystem {
 public:
@@ -14,9 +15,12 @@ private:
     void displayAuthMenu();
     static std::string getUserInput();
     void displayByeMessage();
+    void displayAccountManagementMenu();
+    void displayMedicalManagementMenu();
 
     User user;
     CredentialsStore creds_store;
+    MedicalInfoManipulator manip;
 
 };
 
