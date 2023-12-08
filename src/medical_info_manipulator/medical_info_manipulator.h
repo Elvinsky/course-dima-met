@@ -21,6 +21,7 @@ public:
     void sortByAge();
     void filterBySubstring(const std::string &substring);
     void getNonResidents();
+    void filterByAgeAndDiagnose(int age, const std::string& diagnose);
 private:
     struct ClientInfo {
         std::string fullName;

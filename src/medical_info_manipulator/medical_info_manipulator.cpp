@@ -112,4 +112,24 @@ void MedicalInfoManipulator::getNonResidents() {
     this->clients = old_clients;
 }
 
+void MedicalInfoManipulator::filterByAgeAndDiagnose(int age, const std::string &diagnose) {
+    std::vector<ClientInfo> filtered_clients;
+    for (const auto& client : clients) {
+        int birthYear = std::stoi(client.birthDate.substr(6, 9));
+        int cur_age = 2023 - birthYear;
+
+        if (cur_age > age && client.diagnosis == diagnose) {
+            filtered_clients.push_back(client);
+        }
+    }
+    if (filtered_clients.empty()) {
+        std::cout << "Ничего не найдено, проверьте фильтры!" << std::endl;
+        return;
+    }
+    std::vector <ClientInfo> old_clients = this->clients;
+    this->clients = filtered_clients;
+    this->displayTable();
+    this->clients = old_clients;
+}
+
 

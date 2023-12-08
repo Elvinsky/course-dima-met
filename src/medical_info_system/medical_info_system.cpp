@@ -17,7 +17,8 @@ void MedicalInfoSystem::displayUserMainMenu() {
     std::cout << "2. Поиск и фильтрация" << std::endl;
     std::cout << "3. Сортировка" << std::endl;
     std::cout << "4. Вывести всех иногородних пациентов" << std::endl;
-    std::cout << "5. Выход" << std::endl;
+    std::cout << "5. Вывести всех пациентов старше x лет с диагнозом y." << std::endl;
+    std::cout << "6. Выход" << std::endl;
 
     int user_input = std::stoi(this->getUserInput());
 
@@ -104,6 +105,25 @@ void MedicalInfoSystem::displayUserMainMenu() {
             }
         }
         case 5: {
+            std::cout << "Введите возраст:" << std::endl;
+            int age;
+            std::cin >> age;
+            std::cout << "Введите диагноз:" << std::endl;
+            std::string diagnose;
+            std::cin >> diagnose;
+            manip.filterByAgeAndDiagnose(age, diagnose);
+            std::cout << "1. Вернуться в главное меню" << std::endl;
+            std::cout << "2. Выйти" << std::endl;
+            int choice2 = std::stoi(this->getUserInput());
+            if (choice2 == 1) {
+                this->displayUserMainMenu();
+            } else {
+                std::cout << "До свидания!";
+                exit(0);
+            }
+
+        }
+        case 6: {
             std::cout << "До свидания!";
             exit(0);
         }
